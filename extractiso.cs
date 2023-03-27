@@ -4,6 +4,7 @@ using System.IO;
 
 namespace ExtractISO
 {
+     public int buffersize = 4096;
      public class Extract_ISO
     {
         public static void ExtractISO(string ISOName, string ExtractionPath)
@@ -31,9 +32,9 @@ namespace ExtractISO
             {
                 using (Stream FileStr = finfo.OpenRead())
                 {
-                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
+                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
                     {
-                        FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
+                        FileStr.CopyTo(Fs, buffersize); // Buffer Size
                     }
                 }
             }
